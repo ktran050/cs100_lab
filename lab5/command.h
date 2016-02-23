@@ -19,6 +19,11 @@ class Command {
 
 class OpCommand : public Command {
 	//OpCommand Code Here
+	
+	Op(double num)
+	{
+		this->root = new Op(num);
+	}
 };
 
 class AddCommand : public Command {
