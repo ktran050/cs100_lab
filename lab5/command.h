@@ -19,27 +19,47 @@ class Command {
 
 class OpCommand : public Command {
 	//OpCommand Code Here
-	
-	Op(double num)
-	{
-		this->root = new Op(num);
-	}
+	public:	
+		OpCommand(int num): Command()
+		{	
+			root = new Op(num);
+		};
 };
 
 class AddCommand : public Command {
 	//AddCommand Code Here
+	public:
+		AddCommand(Command* userLeft, int value): Command()
+		{
+			root = new Add(userLeft->get_root(), new Op(value));
+		};
 };
 
 class SubCommand : public Command {
 	//SubCommand Code Here
+	public:
+		SubCommand(Command* userLeft, int value): Command()
+		{
+			root = new Sub(userLeft->get_root(), new Op(value));
+		};
 };
 
 class MultCommand : public Command {
 	//MultCommand Code Here
+	public:
+		MultCommand(Command* userLeft, int value): Command()
+		{
+			root = new Mult(userLeft->get_root(), new Op(value));
+		};
 };
 
 class SqrCommand : public Command {
 	//SqrCommand Code Here
+	public:
+		SqrCommand(Command* userLeft): Command()
+		{
+			root = new Sqr(userLeft->get_root());
+		};
 };
 
 #endif //__COMMAND_CLASS__
