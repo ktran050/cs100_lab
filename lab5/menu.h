@@ -29,7 +29,7 @@ class Menu {
 		bool initialized() {
 			//Return true if the history has been primed with a single op instruction
 			//This is necessary because that is the base of a calculation
-			if(history.size() > 0){
+			if(history_index > 0){
 				return true;
 			}
 			else{
@@ -38,7 +38,6 @@ class Menu {
 		};
 		void add_command(Command* cmd) {
 			//Adds a command to history in the appropriate posiiton (based on history_index)
-			cout << "History index: " << history_index << " History.size(): " << history.size() << endl;
 			if( (unsigned)history_index == history.size() - 1)
 			{
 				history.push_back(cmd);
