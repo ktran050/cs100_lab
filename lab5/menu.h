@@ -2,6 +2,7 @@
 #define __MENU_CLASS__
 
 #include <iostream>
+#include <vector>
 #include "command.h"
 
 using namespace std;
@@ -16,8 +17,8 @@ class Menu {
 			//Base constructor to set up all necessary members
 		};
 		void execute() {
-			if( history.size() != (unsigned)0 ){
-				cout << history.at(history_index)->execute() << endl;
+			if( history_index > (unsigned)0 ){
+				cout << history.at(history_index-1)->execute() << endl;
 			}
 			else{
 				cout << "0" << endl;
@@ -37,16 +38,17 @@ class Menu {
 		};
 		void add_command(Command* cmd) {
 			//Adds a command to history in the appropriate posiiton (based on history_index)
+			cout << "History index: " << history_index << " History.size(): " << history.size() << endl;
 			if(history_index == history.size() - 1)
 			{
 				history.push_back(cmd);
-				historyindex++;
 			}
 			else
 			{
 				vector<Command*>::iterator it = history.begin();
 				history.insert(it+history_index, cmd);
 			}
+			history_index++;
 		};
 		Command* get_command() {
 			//Returns the command in history we are currently referring to (based on history_index)
@@ -57,6 +59,10 @@ class Menu {
 			if(history_index > 0)
 			{
 				history_index -= 1;
+			}
+			else
+			{
+				cout << "Cannot undo" << endl;
 			}
 		};
 		void redo() {

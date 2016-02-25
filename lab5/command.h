@@ -31,7 +31,7 @@ class AddCommand : public Command {
 	public:
 		AddCommand(Command* userLeft, int value): Command()
 		{
-			root = new Add(userLeft->get_root(), new Op(value));
+			this->root = new Add(userLeft->get_root(), new Op(value));
 		};
 };
 
@@ -40,7 +40,7 @@ class SubCommand : public Command {
 	public:
 		SubCommand(Command* userLeft, int value): Command()
 		{
-			root = new Sub(userLeft->get_root(), new Op(value));
+			this->root = new Sub(userLeft->get_root(), new Op(value));
 		};
 };
 
@@ -49,7 +49,7 @@ class MultCommand : public Command {
 	public:
 		MultCommand(Command* userLeft, int value): Command()
 		{
-			root = new Mult(userLeft->get_root(), new Op(value));
+			this->root = new Mult(userLeft->get_root(), new Op(value));
 		};
 };
 
@@ -58,7 +58,7 @@ class SqrCommand : public Command {
 	public:
 		SqrCommand(Command* userLeft): Command()
 		{
-			root = new Sqr(userLeft->get_root());
+			this->root = new Sqr(userLeft->get_root());
 		};
 };
 
