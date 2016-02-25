@@ -17,7 +17,7 @@ class Menu {
 			//Base constructor to set up all necessary members
 		};
 		void execute() {
-			if( history_index > (unsigned)0 ){
+			if( history_index > 0 ){
 				cout << history.at(history_index-1)->execute() << endl;
 			}
 			else{
@@ -39,7 +39,7 @@ class Menu {
 		void add_command(Command* cmd) {
 			//Adds a command to history in the appropriate posiiton (based on history_index)
 			cout << "History index: " << history_index << " History.size(): " << history.size() << endl;
-			if(history_index == history.size() - 1)
+			if( (unsigned)history_index == history.size() - 1)
 			{
 				history.push_back(cmd);
 			}
@@ -52,7 +52,7 @@ class Menu {
 		};
 		Command* get_command() {
 			//Returns the command in history we are currently referring to (based on history_index)
-			return history.at(history_index);
+			return history.at(history_index-1);
 		};
 		void undo() {
 			//Moves to the last command in history (if possible)
