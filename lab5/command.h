@@ -22,7 +22,7 @@ class OpCommand : public Command {
 	public:	
 		OpCommand(int num): Command()
 		{	
-			root = new Op(num);
+			this->root = new Op(num);
 		};
 };
 
