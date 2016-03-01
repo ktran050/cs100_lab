@@ -27,7 +27,7 @@ class Iterator{
 
 class OperatorIterator : public Iterator{
 	public:
-		OperatorIterator (Base* ptr);
+		OperatorIterator(Base* ptr);
 
 		void first();
 		void next();
@@ -37,17 +37,17 @@ class OperatorIterator : public Iterator{
 
 class NullIterator : public Iterator{
 	public:
-		NullIterator (Base* ptr);
+		NullIterator(Base* ptr);
 
 		void first();
 		void next();
-		bool is_done(){}; 
-		Base* current(){};
+		bool is_done(); 
+		Base* current();
 };
 
 class UnaryIterator : public Iterator{
 	public:
-		UnaryIterator (Base* ptr);
+		UnaryIterator(Base* ptr);
 
 		void first();
 		void next(){}; 
