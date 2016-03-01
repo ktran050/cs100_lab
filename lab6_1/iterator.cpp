@@ -34,7 +34,7 @@ PreOrderIterator::PreOrderIterator( Base* ptr ) { this->self_ptr = ptr; }
 void PreOrderIterator::first(){}
 void PreOrderIterator::next(){}
 bool PreOrderIterator::is_done(){ return false; }
-Base* OperatorIterator::current(){ return current_ptr; }
+Base* PreOrderIterator::current(){ return current_ptr; }
 
 //--------------------------------------------------------------------------
 // Null Iterator Class
@@ -43,4 +43,4 @@ NullIterator::NullIterator( Base* ptr ) { this->self_ptr = ptr; }
 void NullIterator::first(){}
 void NullIterator::next(){}
 bool NullIterator::is_done(){ return true; }
-Base* OperatorIterator::current(){ return self_ptr; }
+Base* NullIterator::current(){ return self_ptr; }
