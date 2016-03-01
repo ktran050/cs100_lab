@@ -4,13 +4,19 @@
 
 class Base;
 
+class Iterator;
+class OperatorIterator;
+class NullIterator;
+class UnaryIterator;
+
 class Iterator{
 	protected:
 		Base* self_ptr;
 		Base* current_ptr;
 
 	public:
-		Iterator (Base* ptr){ this-> self_ptr = ptr; }
+		Iterator(){ self_ptr = NULL; current_ptr = NULL; }
+		Iterator(Base* ptr){ this-> self_ptr = ptr; }
 
 		// Sets up the iterator to start at the beginning of transversal
 		virtual void first() = 0;
@@ -50,7 +56,7 @@ class UnaryIterator : public Iterator{
 		UnaryIterator(Base* ptr);
 
 		void first();
-		void next(){}; 
+		void next(); 
 		bool is_done();
 		Base* current();
 };
