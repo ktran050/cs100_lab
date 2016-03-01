@@ -61,4 +61,13 @@ class UnaryIterator : public Iterator{
 		Base* current();
 };
 
+class PreOrderIterator : public Iterator{
+	public:
+		PreOrderIterator( Base* ptr );
+		
+		void first();
+		void next();
+		bool is_done();
+		Base* current();
+};
 #endif
