@@ -31,10 +31,10 @@ Base* OperatorIterator::current(){ return current_ptr; }
 // PreOrder Iterator Class
 //--------------------------------------------------------------------------
 PreOrderIterator::PreOrderIterator( Base* ptr ) { this->self_ptr = ptr; }
-void PreOrderIterator::first(){}
-void PreOrderIterator::next(){}
-bool PreOrderIterator::is_done(){ return false; }
-Base* PreOrderIterator::current(){ return current_ptr; }
+void PreOrderIterator::first(){ current_ptr = self_ptr->first();  }
+void PreOrderIterator::next(){ iterators.pop(); }
+bool PreOrderIterator::is_done(){ return iterators.empty(); }
+Base* PreOrderIterator::current(){ return (iterators.top())->current(); }
 
 //--------------------------------------------------------------------------
 // Null Iterator Class

@@ -1,6 +1,7 @@
 #ifndef __ITERATOR_CLASS__
 #define __ITERATOR_CLASS__
 #include "composite.h"
+#include <stack>
 
 class Base;
 
@@ -62,6 +63,9 @@ class UnaryIterator : public Iterator{
 };
 
 class PreOrderIterator : public Iterator{
+	protected:
+		stack<Iterator*> iterators;
+
 	public:
 		PreOrderIterator( Base* ptr );
 		
