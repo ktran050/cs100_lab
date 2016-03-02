@@ -31,7 +31,28 @@ Base* OperatorIterator::current(){ return current_ptr; }
 // PreOrder Iterator Class
 //--------------------------------------------------------------------------
 PreOrderIterator::PreOrderIterator( Base* ptr ) { this->self_ptr = ptr; }
-void PreOrderIterator::first(){ current_ptr = self_ptr->first();  }
+void PreOrderIterator::first(){
+	// Empty the stack
+	for(unsigned i = 0; i < iterators.size(); ++i){ iterators.pop(); }
+
+	// Create an iterator for the base*
+	Iterator* point = NULL;
+	if(self_ptr->get_right() == NULL){
+		if(self_ptr->get_left() == NULL){
+			point =  new NullIterator(self_ptr);
+		}
+		else{
+			point = new UnaryIterator(self_ptr);
+		}
+	}
+	else{
+		point = new OperatorIterator(self_ptr);
+	}
+
+	// Initialize that iterator and push it onto the stack
+	iterators.push(point);
+}
+
 void PreOrderIterator::next(){ iterators.pop(); }
 bool PreOrderIterator::is_done(){ return iterators.empty(); }
 Base* PreOrderIterator::current(){ return (iterators.top())->current(); }
