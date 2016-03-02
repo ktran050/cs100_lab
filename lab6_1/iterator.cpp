@@ -31,7 +31,13 @@ Base* OperatorIterator::current(){ return current_ptr; }
 // PreOrder Iterator Class
 //--------------------------------------------------------------------------
 PreOrderIterator::PreOrderIterator( Base* ptr ) { this->self_ptr = ptr; }
-void PreOrderIterator::first(){}
+void PreOrderIterator::first(){
+	iterators.empty();
+	while(self_ptr != NULL)
+		{
+			self_ptr = self_ptr->get_left();
+		}
+}
 void PreOrderIterator::next(){}
 bool PreOrderIterator::is_done(){ return false; }
 Base* PreOrderIterator::current(){ return current_ptr; }
