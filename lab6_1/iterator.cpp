@@ -53,9 +53,28 @@ void PreOrderIterator::first(){
 	iterators.push(point);
 }
 
-void PreOrderIterator::next(){ iterators.pop(); }
+void PreOrderIterator::next(){
+	Iterator* temp = iterators.top()->current()->create_iterator();
+    temp->first();
+	iterators.push(temp);
+
+	while(iterators.top()->is_done() && iterators.size() != 0)
+	{
+		iterators.pop();
+		iterators.top()->next();
+	}
+
+ }
 bool PreOrderIterator::is_done(){ return iterators.empty(); }
-Base* PreOrderIterator::current(){ return (iterators.top())->current(); }
+Base* PreOrderIterator::current(){ 
+	if(iterators.size() > 0)
+	{
+		return (iterators.top())->current(); 
+	}
+	else{
+		return NULL;
+	}
+}
 
 //--------------------------------------------------------------------------
 // Null Iterator Class
@@ -64,4 +83,4 @@ NullIterator::NullIterator( Base* ptr ) { this->self_ptr = ptr; }
 void NullIterator::first(){}
 void NullIterator::next(){}
 bool NullIterator::is_done(){ return true; }
-Base* NullIterator::current(){ return self_ptr; }
+Base* NullIterator::current(){ return NULL; }
