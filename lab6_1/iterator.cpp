@@ -36,51 +36,48 @@ void PreOrderIterator::first(){
 	for(unsigned i = 0; i < iterators.size(); ++i){ iterators.pop(); }
 
 	// Create an iterator for the base*
-	Iterator* point = NULL;
-	if(self_ptr->get_right() == NULL){
-		if(self_ptr->get_left() == NULL){
-			point =  new NullIterator(self_ptr);
-		}
-		else{
-			point = new UnaryIterator(self_ptr);
-		}
-	}
-	else{
-		point = new OperatorIterator(self_ptr);
-	}
+	//Iterator* point = NULL;
+	//if(self_ptr->get_right() == NULL){
+	//	if(self_ptr->get_left() == NULL){
+	//		point =  new NullIterator(self_ptr);
+	//	}
+	//	else{
+	//		point = new UnaryIterator(self_ptr);
+	//	}
+	//}
+	//else{
+	//point = new OperatorIterator(self_ptr);
+	//}
+
+	Iterator* point = self_ptr->create_iterator();
+	
+	point->first();
 
 	// Initialize that iterator and push it onto the stack
 	iterators.push(point);
-	cout << "FIRST" << endl;
 }
 
 void PreOrderIterator::next(){
-	cout << "NEXT1" << endl;
 	Iterator* temp = iterators.top()->current()->create_iterator();
     temp->first();
 	iterators.push(temp);
-    cout << "NEXT2" << endl;
 	while(iterators.top()->is_done() && iterators.size() != 0)
 	{
 		iterators.pop();
+		if(iterators.size() == 0){break;}
 		iterators.top()->next();
-		cout << "NEXT" << endl;
 	}
 
  }
-bool PreOrderIterator::is_done(){ cout << "ISDONE" << endl; return iterators.empty(); }
+bool PreOrderIterator::is_done(){ return iterators.empty(); }
 Base* PreOrderIterator::current(){
-	cout << "CURRENT1" << endl; 
 	if(iterators.size() > 0)
 	{
-		cout << "CURRENT3" << endl;
-		return (iterators.top())->current(); 
+		return iterators.top()->current(); 
 	}
 	else{
-		cout << "CURRENT4" << endl;
 		return NULL;
 	}
-	cout << "CURRENT2" << endl;
 }
 
 //--------------------------------------------------------------------------
